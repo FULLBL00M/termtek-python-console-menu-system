@@ -20,6 +20,19 @@ def settings_testone():
 def settings_testtwo():
     print(ttk.build_fancy_font("Settings test two"))
 
+
+test_struct = [
+    {
+        "menu_name": "root_menu", # <=======| string
+        "banner": "Main Menu", # <=======| string
+        "menu_options": [
+            ["key", "label", testone] # <=======| list of strings but func is a reference to a function
+        ], # <=======| list of python objects
+        "previous_menu": [], # <=======| string
+        "child_menu": [] # <=======| list of python objects
+    }
+]
+
 console_menus = [{
     "menu_name": "root_menu",
     "banner": "Main Menu",
@@ -30,7 +43,7 @@ console_menus = [{
                 [ "exit", "Exit the program", sys.exit ]
     ],
     "previous_menu": None,
-    "children": [
+    "child_menu": [
         {
             "menu_name": "openai_api_menu",
             "banner": "Openai Api Menu",
@@ -41,7 +54,7 @@ console_menus = [{
                         [ "back", "Go back to main menu", "root_menu" ]
             ],
             "previous_menu": "root_menu",
-            "children": [
+            "child_menu": [
                 {
                     "menu_name": "openai_api_settings_menu",
                     "banner": "Openai Api Settings Menu",
@@ -51,7 +64,7 @@ console_menus = [{
                                 [ "back", "Go back to main menu", "openai_api_menu" ]
                     ],
                     "previous_menu": "openai_api_menu",
-                    "children": []
+                    "child_menu": []
                 }
             ]
         },
@@ -64,7 +77,7 @@ console_menus = [{
                         [ "back", "Go back to main menu", "root_menu" ]
             ],
             "previous_menu": "root_menu",
-            "children": []
+            "child_menu": []
         }
     ]
 }]
@@ -120,7 +133,7 @@ if __name__ == "__main__":
                 menu_options.append(menu_option)
 
             current_menu = cm.ConsoleMenu(menu['banner'], menu_options, menu['previous_menu'])
-            for child in menu['children']:
+            for child in menu['child_menu']:
                 child_menu = build_menu(child)
                 child_menu.set_previous_menu(current_menu)
                 current_menu.menu_options.append(cm.ConsoleMenu.ConsoleMenuOption(child['menu_name'], child['banner'], child_menu.show_full))
@@ -131,4 +144,4 @@ if __name__ == "__main__":
 
     # Example usage
     root_menu = build_menus(console_menus)
-    root_menu.show_full()
+    print(root_menu.child_menu)
