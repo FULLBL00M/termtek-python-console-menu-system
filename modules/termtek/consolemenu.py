@@ -5,6 +5,16 @@ class ConsoleMenuOption:
     self.key = key
     self.label = label
     self.func = func
+  
+  def get_key(self):
+    return self.key
+  
+  def get_label(self):
+    return self.label
+  
+  def get_func(self):
+    return self.func
+  
 
 class ConsoleMenu:
   def __init__(self, banner, menu_options=None, previous_menu=None):
@@ -43,7 +53,7 @@ class ConsoleMenu:
           # if a matching option was found, perform the corresponding action
           if selected_option is not None:
               print()
-              selected_option.func()
+              selected_option.get_func()()
           # if no matching option was found, exit the main loop
           else:
               print("Invalid selection. Please try again.")

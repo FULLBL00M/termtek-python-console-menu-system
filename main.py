@@ -5,7 +5,6 @@ import modules.termtek as ttk
 
 def pp(arr):
     pprint.pprint(arr)
-
 # _________________________________________________________________________________________________________________________________
 
 def testone():
@@ -43,7 +42,6 @@ def create_all_menus():
     menu_objects = []
     main_menu_root = create_main_menu()
     settings_root = create_settings_menu(main_menu_root)
-    main_menu_root.menu_options[2].func = settings_root.show_full
 
     menu_objects.append({
         "main_menu_object": main_menu_root
@@ -51,7 +49,7 @@ def create_all_menus():
     menu_objects.append({
         "settings_menu_object": settings_root
     })
-    # menu_objects.get("main_menu_object").menu_options[2].func = menu_objects[0].get("settings_menu_object").show_full
+
     return menu_objects
 
 # _________________________________________________________________________________________________________________________________
