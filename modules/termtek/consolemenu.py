@@ -53,7 +53,7 @@ class ConsoleMenu:
           # if a matching option was found, perform the corresponding action
           if selected_option is not None:
               print()
-              selected_option.get_func()()
+              selected_option.func()
           # if no matching option was found, exit the main loop
           else:
               print("Invalid selection. Please try again.")

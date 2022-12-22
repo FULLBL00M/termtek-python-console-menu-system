@@ -50,6 +50,9 @@ def create_all_menus():
         "settings_menu_object": settings_root
     })
 
+    for option in menu_objects[0].get("main_menu_object").menu_options:
+        if option.label == "Change settings for the program":
+            option.func = settings_root.show_full
     return menu_objects
 
 # _________________________________________________________________________________________________________________________________
