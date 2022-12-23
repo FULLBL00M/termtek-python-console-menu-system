@@ -1,38 +1,39 @@
 import os
 
+class ConsoleMenuOption:
+    def __init__(self, key, label, func):
+        self.key = key
+        self.label = label
+        self.func = func
+
+    def get_key(self):
+        return self.key
+
+    def set_key(self, key):
+        self.key = key
+
+    def get_label(self):
+        return self.label
+
+    def set_label(self, label):
+        self.label = label
+
+    def get_func(self):
+        return self.func
+
+    def set_func(self, func):
+        self.func = func
+
 class ConsoleMenu:
     # Console Menu Option Subclass
-    class ConsoleMenuOption:
-        def __init__(self, key, label, func):
-            self.key = key
-            self.label = label
-            self.func = func
-
-        def get_key(self):
-            return self.key
-
-        def set_key(self, key):
-            self.key = key
-
-        def get_label(self):
-            return self.label
-
-        def set_label(self, label):
-            self.label = label
-
-        def get_func(self):
-            return self.func
-
-        def set_func(self, func):
-            self.func = func
 
     # Console Menu Base Class Methods and Functions
-    def __init__(self, menu_name, banner, menu_options=[], previous_menu=[], child_menu=[]):
+    def __init__(self, menu_name, banner, menu_options=[], previous_menu=[], child_menus=[]):
         self.menu_name = menu_name
         self.banner = banner
         self.menu_options = menu_options
         self.previous_menu = previous_menu
-        self.child_menu = child_menu
+        self.child_menus = child_menus
 
     # self.menu_name methods
     def get_menu_name(self):
@@ -53,6 +54,8 @@ class ConsoleMenu:
         return self.menu_options
     def set_menu_options(self, menu_options):
         self.menu_options = menu_options
+    def append_menu_option(self, option):
+        self.menu_options.append(option)
     def show_menu_options(self):
         for option in self.menu_options:
             print(f"[ {option.key} ]: {option.label}\n")
@@ -70,6 +73,7 @@ class ConsoleMenu:
         self.child_menu = child_menu
 
     # Misc functions
+
     def go_back(self):
         self.previous_menu.show_full()
 
