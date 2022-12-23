@@ -1,10 +1,7 @@
 import pprint
 import modules.termtek as ttk
 from typing import List, Callable, Dict, Any
-import sys
-sys.path.append('/path/to/project/modules')
 import modules.termtek.consolemenu as cm
-
 
 def pp(arr):
     pprint.pprint(arr)
@@ -21,17 +18,17 @@ def settings_testtwo():
     print(ttk.build_fancy_font("Settings test two"))
 
 
-test_struct = [
-    {
-        "menu_name": "root_menu", # <=======| string
-        "banner": "Main Menu", # <=======| string
-        "menu_options": [
-            ["key", "label", testone] # <=======| list of strings but func is a reference to a function
-        ], # <=======| list of python objects
-        "previous_menu": [], # <=======| string
-        "child_menu": [] # <=======| list of python objects
-    }
-]
+# test_struct = [
+#     {
+#         "menu_name": "root_menu", # <=======| string
+#         "banner": "Main Menu", # <=======| string
+#         "menu_options": [
+#             ["key", "label", testone] # <=======| list of strings but func is a reference to a function
+#         ], # <=======| list of python objects
+#         "previous_menu": [], # <=======| string
+#         "child_menu": [] # <=======| list of ConsoleMenuOption python objects
+#     }
+# ]
 
 console_menus = [{
     "menu_name": "root_menu",
@@ -124,24 +121,25 @@ console_menus = [{
 
 if __name__ == "__main__":
 
-    def build_menus(menus: List[dict]) -> 'ConsoleMenu':
-        def build_menu(menu: dict) -> 'consoleMenu':
+    def build_menus(menus: List[dict]) -> 'consoleMenu':
+        def build_menu(menu: dict, parent_menu: 'consoleMenu' = None) -> 'consoleMenu':
             menu_options = []
             for option in menu['menu_options']:
                 key, label, func = option
-                menu_option = cm.ConsoleMenu.ConsoleMenuOption(key, label, func)
+                menu_option = cm.consoleMenu.consoleMenuOption(key, label, func)
                 menu_options.append(menu_option)
 
-            current_menu = cm.ConsoleMenu(menu['banner'], menu_options, menu['previous_menu'])
+            # Insert "back" option if parent menu is not None
+            if parent_menu is not None:
+                menu_options.append(cm.consoleMenu.consoleMenuOption("back", f"Go back to {parent_menu.banner}", parent_menu.show_full))
+
+            current_menu = cm.consoleMenu(menu['banner'], menu_options, menu['previous_menu'])
             for child in menu['child_menu']:
-                child_menu = build_menu(child)
+                child_menu = build_menu(child, current_menu)  # <-- Pass current menu as parent_menu for each child
                 child_menu.set_previous_menu(current_menu)
-                current_menu.menu_options.append(cm.ConsoleMenu.ConsoleMenuOption(child['menu_name'], child['banner'], child_menu.show_full))
+                current_menu.menu_options.append(cm.consoleMenu.consoleMenuOption(child['menu_name'], child['banner'], child_menu.show_full))
             return current_menu
 
         root_menu = build_menu(menus[0])
         return root_menu
 
-    # Example usage
-    root_menu = build_menus(console_menus)
-    print(root_menu.child_menu)
