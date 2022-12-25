@@ -6,6 +6,9 @@ class ConsoleMenuOption:
         self.label = label
         self.func = func
 
+    def get_all(self):
+        return [self.key, self.label, self.func]
+
     def get_key(self):
         return self.key
 
@@ -33,7 +36,6 @@ class ConsoleMenu:
         self.banner = banner
         self.menu_options = menu_options
         self.previous_menu = previous_menu
-        self.child_menus = child_menus
 
     # self.menu_name methods
     def get_menu_name(self):
@@ -66,12 +68,6 @@ class ConsoleMenu:
     def set_previous_menu(self, previous_menu):
         self.previous_menu = previous_menu
 
-    # self.child_menu methods
-    def get_child_menu(self):
-        return self.child_menu
-    def set_child_menu(self, child_menu):
-        self.child_menu = child_menu
-
     # Misc functions
 
     def go_back(self):
@@ -82,15 +78,17 @@ class ConsoleMenu:
         Shows the full menu and returns the user's selection.
         """
         while True:
-            print(f"\n{self.banner}\n")
-            for option in self.menu_options:
-                print(f"[ {option.key} ]: {option.label}")
+            self.show_banner()
+            options = self.get_menu_options()
+            for option in options:
+                key = option.get_key()
+                label = option.get_label()
+                print(f"[ {key} ]: {label}")
             print()
-            choice = input("Enter your choice: ")
+            choice = input("Please select an option: ").lower()
 
             # find the menu option with the matching key
-            selected_option = next(
-                (x for x in self.menu_options if x.key == choice), None)
+            selected_option = next( (x for x in self.menu_options if x.key == choice), None)
 
             # if a matching option was found, perform the corresponding action
             if selected_option is not None:
