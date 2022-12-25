@@ -84,7 +84,7 @@ Another interesting thing to note is that I am using the ttk.build_fancy_font() 
 
 # How to run
 ```
-git clone git@github.com:FULLBL00M/golden-ai.git
+git clone git@github.com:FULLBL00M/termtek-python-console-menu-system.git
 cd golden-ai/
 python3 main.py
 ```
