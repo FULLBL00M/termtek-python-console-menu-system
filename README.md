@@ -1,4 +1,5 @@
 # Termtek Python Module
+## --- Console Menu System
 
 ```
 fullbl00m@bl00mb0x:~/Desktop/golden-ai$ python3 main.py 
@@ -24,18 +25,23 @@ root_menu
 |
 |--- test1 (Test function one)
 |--- test2 (Test function two)
+|
 |--- openai (Play with Openai API)
 |     |--- test1 (Test openai function one)
 |     |--- test2 (Test openai function two)
 |     |--- aisettings (Change settings for openai)
+|     |     |--- test1 (Test openai settings function one)
+|     |     |--- test2 (Test openai settings function two)
+|     |     |--- Go Back (Return to previous menu)
+|     |
 |     |--- Go Back (Return to previous menu)
-|           |--- test1 (Test openai settings function one)
-|           |--- test2 (Test openai settings function two)
-|           |--- Go Back (Return to previous menu)
+|
+|
 |--- settings (Change settings for the program)
 |     |--- password (Change your account password)
 |     |--- email (Change your account email)
 |     |--- Go Back (Return to previous menu)
+|
 |--- exit (Exit the program)
 
 ```
@@ -44,7 +50,7 @@ The goal of this project is to provide a simple to use menu system to inexperien
 
 The inspiration for this project was to simplify creation and maintenance of interconnected console menu programs.
 
-Quality of life features:<br>
+<b>Quality of life features:</b><br>
 The back buttons will automatically map to the menu that called it so you don't have to worry about that.<br>
 There is a verbose debugger that I built for myself but you can use it if you want to modify the module.
 If you want just set Debug to True in modules/consolemodule.py or override it in main.py
@@ -58,9 +64,9 @@ The secret to its magic revolves around the fact that the menu_options you suppl
 
 The menu_option is a List that is comprised of: [ <b>key</b>, <b>label</b>, <b>func</b> ]
 <ul>
-    <li>key: This is the keyword that the user will type to activate a menu_option in your program</li>
-    <li>label: This is the text that will describe the action of your menu option</li>
-    <li>func: This is the most important part of the project. This points to either a function to run or the name of another menu_name that you want to reference.</li>
+    <li><b>key:</b> This is the keyword that the user will type to activate a menu_option in your program</li>
+    <li><b>label:</b> This is the text that will describe the action of your menu option</li>
+    <li><b>func:</b> This is the most important part of the project. This points to either a function to run or the name of another menu_name that you want to reference.</li>
 </ul>
 
 Below is an example of a menu block that you will supply the program in the main.py file.

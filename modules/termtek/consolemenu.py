@@ -2,7 +2,7 @@ import os
 import pprint
 import modules.termtek as ttk
 
-debug = False
+debug = True
 
 class ConsoleMenuOption:
     def __init__(self, key, label, func):
@@ -236,8 +236,8 @@ def build_console_menu_objects(all_menus):
                 check.append(obj.get_all())
 
             if debug:
-                print(f'CHECK: {check}')
-                print(f'MENU OPTIONS: {menu["menu_options"]}')
+                #print(f'CHECK: {check}')
+                #print(f'MENU OPTIONS: {menu["menu_options"]}')
 
                 if check == menu["menu_options"]:
                     print(ttk.colorize("\n    [ FINAL OPTIONS SET SUCCESSFULLY ]", "green"))
