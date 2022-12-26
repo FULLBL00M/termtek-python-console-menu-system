@@ -1,8 +1,10 @@
 import os
 import pprint
+import time
+import random
 import modules.termtek as ttk
 
-debug = True
+debug = False
 
 class ConsoleMenuOption:
     def __init__(self, key, label, func):
@@ -247,7 +249,7 @@ def build_console_menu_objects(all_menus):
         for menu in all_menus:
             print(ttk.colorize("[ MENU ]", "cyan") + f" {menu['menu_name']}")
             print(f'all_menus["menu_name"] => {menu["menu_name"]}')
-            print(f'all_menus["banner"] => {menu["banner"]}')
+            print(f'all_menus["banner"] => \n{menu["banner"]}')
             print(f'all_menus["console_menu_object"].get_previous_menu() => {menu["console_menu_object"].get_previous_menu()}')
             print()
 
@@ -323,7 +325,7 @@ def print_columns(data, keys, max_width=30):
     # Print the column names
     row_str = ''
     for key in keys:
-        key_str = str(format_simple_heading_spaced(key))[:column_widths[key]]
+        key_str = str(return_simple_heading_spaced(key))[:column_widths[key]]
         row_str += f"{key_str}{' '*(column_widths[key]-len(key_str))}\t"
     print(row_str)
 
@@ -340,7 +342,7 @@ def print_columns(data, keys, max_width=30):
 ************************************************************************************************************************************
 """
 
-def format_simple_heading_spaced(text):
+def return_simple_heading_spaced(text):
     """
     Format the given text by adding brackets, padding characters, and separating each letter with a space.
 
@@ -357,3 +359,11 @@ def format_simple_heading_spaced(text):
     formatted_text = f"[  {spaced_text}  ]"
 
     return formatted_text
+
+def print_text_humanistic(text: str):
+    """Print text character by character with humanistic variations in speed."""
+    for char in text:
+        print(char, end="", flush=True)
+        time.sleep(random.uniform(0.01, 0.025))
+    print()
+

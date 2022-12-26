@@ -1,5 +1,4 @@
-# Termtek Python Module
-## --- Console Menu System
+<div class="markdown prose w-full break-words dark:prose-invert dark"><h1>Termtek Python Module</h1><h2>Console Menu System</h2><p>The <code>Termtek Python Module</code> is a library that provides a console menu system for Python programs. It is designed to be easy to use for inexperienced programmers while also providing a reliable foundation for experienced developers.</p><h2>Features</h2><ul><li>A back button that automatically returns to the previous menu</li><li>A verbose debugger that can be turned on for debugging purposes</li><li>The ability to execute functions or navigate to other menus from menu options</li></ul><h2>Usage</h2><p>To use the library, you need to define your menus as dictionaries containing a <code>menu_name</code>, a <code>banner</code> displayed at the top of the menu, and a list of <code>menu_options</code>. Each menu option is a list containing a <code>key</code>, a <code>label</code> describing the action, and a <code>func</code> that can be a function to execute or a dictionary with a <code>goto</code> key that references another menu.</p><p>Once you have defined your menus, you can use the <code>ttk.build_console_menu_objects</code> function to create a <code>console_menu_object</code> attribute for each menu. You can then use the <code>show_full</code> method of the <code>console_menu_object</code> to display the menu and handle user input.</p><p>The library also provides a <code>build_fancy_font</code> function that can be used to create a banner with a custom font.</p><p>Overall, the <code>Termtek Python Module</code> provides a simple and customizable solution for creating console menus in Python programs.</p></div>
 
 ```
 fullbl00m@bl00mb0x:~/Desktop/golden-ai$ python3 main.py 
@@ -16,7 +15,6 @@ fullbl00m@bl00mb0x:~/Desktop/golden-ai$ python3 main.py
 Please select an option: exit
 
 ```
-
 
 This is a simple diagram of the test menu structure that is currently in main.py
 
@@ -46,9 +44,8 @@ root_menu
 
 ```
 
-The goal of this project is to provide a simple to use menu system to inexperienced coders, while providing a dependable foundation for experienced developers to utilize aswell. 
 
-The inspiration for this project was to simplify creation and maintenance of interconnected console menu programs.
+The inspiration for this project was to simplify and accelerate the creation and maintenance of interconnected console menu programs.
 
 <b>Quality of life features:</b><br>
 The back buttons will automatically map to the menu that called it so you don't have to worry about that.<br>
@@ -69,7 +66,7 @@ The menu_option is a List that is comprised of: [ <b>key</b>, <b>label</b>, <b>f
     <li><b>func:</b> This is the most important part of the project. This points to either a function to run or the name of another menu_name that you want to reference.</li>
 </ul>
 
-Below is an example of a menu block that you will supply the program in the main.py file.
+Below is an example of a menu dictionary that you will customize in the main.py file.
 
 ```
 root_menu = {
@@ -91,7 +88,7 @@ Another interesting thing to note is that I am using the ttk.build_fancy_font() 
 # How to run
 ```
 git clone git@github.com:FULLBL00M/termtek-python-console-menu-system.git
-cd golden-ai/
+cd termtek-python-console-menu-system/
 python3 main.py
 ```
 
@@ -110,4 +107,5 @@ If you are looking at this for somereason and want to know more hit me up on dis
 <br>
 Created by @fullbl00m#1224 on discord
            <br>@FULLBL00M on github
+
 
