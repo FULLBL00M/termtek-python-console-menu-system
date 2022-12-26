@@ -34,7 +34,6 @@ class ConsoleMenuOption:
         self.func = func
 
 class ConsoleMenu:
-    # Console Menu Option Subclass
 
     # Console Menu Base Class Methods and Functions
     def __init__(self, menu_name, banner, menu_options=[], previous_menu=[], child_menus=[]):
